@@ -71,7 +71,7 @@ try:
 except Exception as e:
     logger.error(e)
     if redis_url == 'redis://localhost:6379/0':
-        logger.error('REDIS DISCONNECT:Ensure Configure the REDIS_DSN variable in .env')
+        logger.warning('REDIS DISCONNECT:Ensure Configure the REDIS_DSN variable in .env')
     raise ValueError('REDIS DISCONNECT')
 else:
     logger.success(f'RedisClientWrapper loaded successfully in {redis_url}')
