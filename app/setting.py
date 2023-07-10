@@ -4,7 +4,7 @@
 # @File    : setting.py
 # @Software: PyCharm
 from dotenv import load_dotenv
-from pydantic import BaseSettings, Field
+from pydantic import BaseSettings, Field, validator
 
 
 class BotSetting(BaseSettings):
@@ -18,6 +18,12 @@ class BotSetting(BaseSettings):
     class Config:
         env_file = '.env'
         env_file_encoding = 'utf-8'
+
+    @validator('token')
+    def proxy_address_validator(cls, v):
+        if v is None:
+            raise ValueError('Bot token is None')
+        return v
 
 
 load_dotenv()
