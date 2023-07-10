@@ -9,21 +9,21 @@
 ```markdown
 .
 ├── app # 业务逻辑
-│ ├── controller.py
-│ ├── event.py
+│ ├── controller.py # 控制器
+│ ├── event.py # 事件处理
 │ ├── __pycache__
-│ └── setting.py
+│ └── setting.py # 业务配置模型，可以在此处配置相关参数并在 .env 文件中读取初始化。
 ├── cache # 缓存
 │ ├── base.py
-│ ├── elara.py
+│ ├── elara.py # 文件缓存模型
 │ ├── __init__.py
-│ └── redis.py
+│ └── redis.py # redis 缓存模型
 ├── main.py # 主程序
 ├── requirements.txt
 ├── run.log # 运行日志
 ├── schema.py # 数据模型
 └── utils # 工具
-└── parse.py
+└── parse.py # 解析器
 ```
 
 ## 缓存
