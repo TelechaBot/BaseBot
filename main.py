@@ -1,12 +1,20 @@
 # -*- coding: utf-8 -*-
-# @Time    : 9/22/22 10:07 PM
-# @FileName: main.py
-# @Software: PyCharm
-# @Github    ：sudoskys
-from pathlib import Path
-from utils.Base import ReadConfig
-from App.Controller import BotRunner
+import sys
+from loguru import logger
 
-config = ReadConfig().parseFile(str(Path.cwd()) + "/Config/app.toml")
-App = BotRunner(config)
+from app.controller import BotRunner
+
+
+logger.remove()
+handler_id = logger.add(sys.stderr, level="INFO")
+
+# 日志机器
+logger.add(sink='run.log',
+           format="{time} - {level} - {message}",
+           level="INFO",
+           rotation="100 MB",
+           enqueue=True
+           )
+
+App = BotRunner()
 App.run()
