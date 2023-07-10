@@ -5,6 +5,7 @@
 # @Software: PyCharm
 import json
 import os
+from typing import Optional
 
 import redis
 from dotenv import load_dotenv
@@ -65,10 +66,10 @@ redis_url = os.getenv('REDIS_DSN', None)
 if not redis_url:
     logger.warning('REDIS_DSN not found in .env, use default redis://localhost:6379/0')
     redis_url = 'redis://localhost:6379/0'
-
+cache: Optional[RedisClientWrapper]
 if not check_redis_dsn(redis_url):
     logger.warning('REDIS DISCONNECT')
     cache = None
 else:
     logger.success(f'RedisClientWrapper loaded successfully in {redis_url}')
-    cache: RedisClientWrapper = RedisClientWrapper(redis_url)
+    cache = RedisClientWrapper(redis_url)
