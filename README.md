@@ -1,4 +1,4 @@
-# BaseBot
+# 🧀 BaseBot
 
 基于 MVC 模型的基础 HttpApi 机器人框架，可以快速开发相关机器人。
 
