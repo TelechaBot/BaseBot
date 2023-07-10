@@ -61,17 +61,14 @@ def check_redis_dsn(dsn):
 
 # 加载 .env 文件
 load_dotenv()
-redis_url = os.getenv('REDIS_DSN', 'redis://localhost:6379/0')
-try:
-    # 检查连接
-    if not check_redis_dsn(redis_url):
-        raise ValueError('REDIS DISCONNECT')
-        # 初始化实例
-    cache: RedisClientWrapper = RedisClientWrapper(redis_url)
-except Exception as e:
-    logger.error(e)
-    if redis_url == 'redis://localhost:6379/0':
-        logger.warning('REDIS DISCONNECT:Ensure Configure the REDIS_DSN variable in .env')
-    raise ValueError('REDIS DISCONNECT')
+redis_url = os.getenv('REDIS_DSN', None)
+if not redis_url:
+    logger.warning('REDIS_DSN not found in .env, use default redis://localhost:6379/0')
+    redis_url = 'redis://localhost:6379/0'
+
+if not check_redis_dsn(redis_url):
+    logger.warning('REDIS DISCONNECT')
+    cache = None
 else:
     logger.success(f'RedisClientWrapper loaded successfully in {redis_url}')
+    cache: RedisClientWrapper = RedisClientWrapper(redis_url)
