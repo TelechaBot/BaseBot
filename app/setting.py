@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 from pydantic import BaseSettings, Field, validator
 
 
-class BotSetting(BaseSettings):
+class Bot(BaseSettings):
     """
     代理设置
     """
@@ -27,4 +27,4 @@ class BotSetting(BaseSettings):
 
 
 load_dotenv()
-BotSetting = BotSetting()
+BotSetting = Bot()
