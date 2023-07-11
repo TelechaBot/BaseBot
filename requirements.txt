@@ -2,7 +2,7 @@ pyTelegramBotAPI
 pathlib>=1.0.1
 loguru>=0.5.3
 httpx>=0.23.3
-pydantic>=1.10.4
+pydantic<=2.0.0
 beautifulsoup4>=4.11.1
 python-dotenv
 elara
